@@ -32,7 +32,7 @@ class AuthenticatedSessionController extends Controller
         if($request->user()->role == 'admin' || $request->user()->role == 'superadmin'){
             return to_route("adminDashboard");
         }
-        return to_route('userDashboard');
+        return to_route('user#home');
 
     }
 

@@ -22,7 +22,7 @@
         <div class="row">
             <div class="col">
                 <table class="table table-hover shadow-sm ">
-                    <thead class="bg-primary text-white">
+                    <thead class="text-white" style=" background-color: #542344;">
                         <tr>
                             <th>ID</th>
                             <th>Name</th>

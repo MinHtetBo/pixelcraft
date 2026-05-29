@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Fruitables - Vegetable Website Template</title>
+    <title>PixelCraft</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
@@ -16,9 +16,7 @@
         rel="stylesheet">
 
     <!-- Icon Font Stylesheet -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
-        integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
 
     <!-- Libraries Stylesheet -->
@@ -32,56 +30,60 @@
     <!-- Template Stylesheet -->
     <link href="{{asset('user_template/css/style.css')}}" rel="stylesheet">
 
-    <link rel="{{asset('user_template/css/custom.css')}}" href="css/custom.css">
+    <link href="{{asset('user_template/css/custom.css')}}" rel="stylesheet">
 
 </head>
 
 <body>
 
-
-
-
-
-    <!-- Navbar start -->
-    <div class="container-fluid fixed-top">
-
-        <div class="container px-0">
-            <nav class="navbar navbar-light bg-white navbar-expand-xl">
+    <!-- navbar start -->
+    <section class="">
+        <nav class="navbar navbar-expand-lg bg-body-tertiary shadow-sm fixed-top" style=" background-color: #542344;">
+            <div class="container">
                 <a href="index.html" class="navbar-brand">
-                    <h1 class="text-primary display-6">Fruitables</h1>
+                    <h1 class="display-6" style="color: #BFD1E5;">PixelCraft</h1>
                 </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
                 <button class="navbar-toggler py-2 px-3" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarCollapse">
-                    <span class="fa fa-bars text-primary"></span>
+                    <span class="fa fa-bars"></span>
                 </button>
-                <div class="collapse navbar-collapse bg-white" id="navbarCollapse">
-                    <div class="navbar-nav mx-auto">
-                        <a href="" class="nav-item nav-link ">Shop</a>
-                        <a href="" class="nav-item nav-link">Cart</a>
-                        <a href="#" class="nav-item nav-link">Contact</a>
+                <div class="collapse navbar-collapse " id="navbarCollapse">
+                    <div class="navbar-nav mx-auto" >
+                        <a href="{{ route('user#home') }}" class="nav-item nav-link " style="color: #BFD1E5;">Shop</a>
+                        <a href="{{ route('user#cart') }}" class="nav-item nav-link" style="color: #BFD1E5;">Cart</a>
+                        <a href="{{ route('user#myOrder') }}" class="nav-item nav-link" style="color: #BFD1E5;">My Order</a>
+                        <a href="{{ route('user#contactPage') }}" class="nav-item nav-link" style="color: #BFD1E5;">Contact</a>
 
                     </div>
                     <div class="d-flex m-3 me-0">
 
-                        <a href="" class="position-relative me-4 my-auto">
-                            <i class="fa fa-shopping-bag fa-2x"></i>
+                        <a href="{{ route('user#cart') }}" class="position-relative me-4 my-auto">
+                            <i class="fa fa-shopping-bag fa-2x" style="color: #BFD1E5;"></i>
                         </a>
-                        <a href="" class="position-relative me-4 my-auto">
-                            <i class="fa-solid fa-list-check fa-2x"></i>
+                        <a href="{{ route('user#myOrder') }}" class="position-relative me-4 my-auto">
+                            <i class="fa-solid fa-list-check fa-2x" style="color: #BFD1E5;"></i>
                         </a>
                         <div class="nav-item dropdown">
-                            <a href="#" class="nav-link dropdown-toggle my-auto mt-2" data-bs-toggle="dropdown">
-                                <img src=" " style="width: 50px" class="img-profile  rounded-circle" alt="">
-                                <span></span>
+                            <a href="#" class="nav-link dropdown-toggle my-auto mt-2" style="color: #BFD1E5;" data-bs-toggle="dropdown">
+
+                                    <img src="{{ asset(auth()->user()->profile == null ? 'defaultImage/defaultProfile.jpg' : 'userProfile/'. auth()->user()->profile) }}" style="width: 50px" class="img-profile  rounded-circle" alt="">
+                               <span> {{ auth()->user()->name }}</span>
+
                             </a>
-                            <div class="dropdown-menu m-0 bg-secondary rounded-0">
-                                <a href="#" class="dropdown-item my-2">Edit Profile</a>
-                                <a href="#" class="dropdown-item my-2">Change Password</a>
+                            <div class="dropdown-menu m-0 rounded-0" >
+                                <a href="{{ route('user#edit') }}" class="dropdown-item my-2" >Edit Profile</a>
+                                <a href="{{ route('user#changePasswordPage') }}" class="dropdown-item my-2">Change Password</a>
+                                 <a href="{{ route('user#home') }}" class="dropdown-item my-2">Home</a>
                                 <a href="#" class="dropdown-item my-2">
                                     <form action="{{ route("logout") }}" method="post">
                                         @csrf
                                         <input type="submit" value="Logout"
-                                            class="btn btn-outline-success rounded w-100 mb-3">
+                                            class="btn btn-outline-danger rounded w-100 mb-3">
                                     </form>
                                 </a>
                             </div>
@@ -90,9 +92,10 @@
                     </div>
                 </div>
             </nav>
-        </div>
-    </div>
-    <!-- Navbar End -->
+            </div>
+        </nav>
+    </section>
+    <!-- navbar end -->
 
 
     @yield("content")
@@ -101,14 +104,14 @@
 
 
     <!-- Footer Start -->
-    <div class="container-fluid bg-dark text-white-50 footer pt-5 mt-5">
+    <div class="container-fluid text-white-50 footer pt-5 mt-5" style="background-color: #542344;">
         <div class="container py-5">
-            <div class="pb-4 mb-4" style="border-bottom: 1px solid rgba(226, 175, 24, 0.5) ;">
+            <div class="pb-4 mb-4" style="border-bottom: 1px solid #BFD1E5;">
                 <div class="row g-4">
                     <div class="col-lg-3">
                         <a href="#">
-                            <h1 class="text-primary mb-0">Fruitables</h1>
-                            <p class="text-secondary mb-0">Fresh products</p>
+                            <h1 class=" mb-0" style="color:#BFD1E5;">PixelCraft</h1>
+                            <p class=" mb-0" style="color:#BFD1E5;"></p>
                         </a>
                     </div>
                     <div class="col-lg-6">
@@ -122,13 +125,13 @@
                     </div>
                     <div class="col-lg-3">
                         <div class="d-flex justify-content-end pt-3">
-                            <a class="btn  btn-outline-secondary me-2 btn-md-square rounded-circle" href=""><i
+                            <a class="btn   me-2 btn-md-square rounded-circle" style="color:#BFD1E5;" href=""><i
                                     class="fab fa-twitter"></i></a>
-                            <a class="btn btn-outline-secondary me-2 btn-md-square rounded-circle" href=""><i
+                            <a class="btn  me-2 btn-md-square rounded-circle" style="color:#BFD1E5;" href=""><i
                                     class="fab fa-facebook-f"></i></a>
-                            <a class="btn btn-outline-secondary me-2 btn-md-square rounded-circle" href=""><i
+                            <a class="btn  me-2 btn-md-square rounded-circle" style="color:#BFD1E5;" href=""><i
                                     class="fab fa-youtube"></i></a>
-                            <a class="btn btn-outline-secondary btn-md-square rounded-circle" href=""><i
+                            <a class="btn  btn-md-square rounded-circle" style="color:#BFD1E5;" href=""><i
                                     class="fab fa-linkedin-in"></i></a>
                         </div>
                     </div>
@@ -140,7 +143,7 @@
                         <h4 class="text-light mb-3">Why People Like us!</h4>
                         <p class="mb-4">typesetting, remaining essentially unchanged. It was
                             popularised in the 1960s with the like Aldus PageMaker including of Lorem Ipsum.</p>
-                        <a href="" class="btn border-secondary py-2 px-4 rounded-pill text-primary">Read More</a>
+                        <a href="" class="btn py-2 px-4 rounded-pill " style="background-color:#BFD1E5; color: #542344;" >Read More</a>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6">
@@ -181,19 +184,18 @@
     <!-- Footer End -->
 
     <!-- Copyright Start -->
-    <div class="container-fluid copyright bg-dark py-4">
+    <div class="container-fluid copyright py-4" style="background-color: #542344;">
         <div class="container">
             <div class="row">
                 <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
-                    <span class="text-light"><a href="#"><i class="fas fa-copyright text-light me-2"></i>Your Site
-                            Name</a>, All right reserved.</span>
+                    <span class="" style="color:#BFD1E5;"><a href="#" style="color:#BFD1E5;"><i class="fas fa-copyright  me-2" style="color:#BFD1E5;"></i>PixelCraft</a>, All right reserved.</span>
                 </div>
                 <div class="col-md-6 my-auto text-center text-md-end text-white">
                     <!--/*** This template is free as long as you keep the below author’s credit link/attribution link/backlink. ***/-->
                     <!--/*** If you'd like to use the template without the below author’s credit link/attribution link/backlink, ***/-->
                     <!--/*** you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". ***/-->
-                    Designed By <a class="border-bottom" href="https://htmlcodex.com">HTML Codex</a> Distributed By <a
-                        class="border-bottom" href="https://themewagon.com">ThemeWagon</a>
+                    Designed By <a class="border-bottom" style="color:#BFD1E5;" href="https://htmlcodex.com">HTML Codex</a> Distributed By <a
+                        class="border-bottom" href="https://themewagon.com" style="color:#BFD1E5;">ThemeWagon</a>
                 </div>
             </div>
         </div>
@@ -203,9 +205,15 @@
 
 
     <!-- Back to Top -->
-    <a href="#" class="btn btn-primary border-3 border-primary rounded-circle back-to-top"><i
+    <a href="#" class="btn border-3 rounded-circle back-to-top" style="background-color: #BFD1E5;"><i
             class="fa fa-arrow-up"></i></a>
 
+               {{-- sweetalert package --}}
+                <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+                <script src="sweetalert2.all.min.js"></script>
+
+                <link rel="stylesheet" href="sweetalert2.min.css">
 
     <!-- JavaScript Libraries -->
 
@@ -217,6 +225,21 @@
     <script src="{{asset('user_template/lib/waypoints/waypoints.min.js')}}"></script>
     <script src="{{asset('user_template/lib/lightbox/js/lightbox.min.js')}}"></script>
     <script src="{{asset('user_template/lib/owlcarousel/owl.carousel.min.js')}}"></script>
+    <script src="{{ asset('user_template/js/main.js') }}"></script>
 
+
+     @yield('script-code');
+
+    <script>
+        function loadFile(event){
+          var reader = new FileReader()
+
+          reader.onload = function(){
+            document.getElementById('output').src = reader.result;
+          }
+
+          reader.readAsDataURL(event.target.files[0])
+        }
+    </script>
 
 </html>

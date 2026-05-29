@@ -4,7 +4,9 @@
 use App\Http\Controllers\AdminDashboardController;
 use App\Http\Controllers\AdminProfileController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\SaleInformationController;
 use Illuminate\Support\Facades\Route;
 
 Route::group(['middleware' => 'adminMiddleware', 'prefix' => 'admin'], function () {
@@ -42,6 +44,22 @@ Route::group(['middleware' => 'adminMiddleware', 'prefix' => 'admin'], function 
         Route::post('/add/adminAccount', [AdminProfileController::class, 'addNewAdmin'])->name('profile#addNewAdmin');
         Route::get('/{accountType}/list', [AdminProfileController::class, 'accountList'])->name('profile#accountList');
          Route::get('/delete/{id}', [AdminProfileController::class, 'delete'])->name('profile#delete');
+         Route::get('/payment', [AdminProfileController::class, 'paymentPage'])->name('profile#paymentPage');
+          Route::post('/payment', [AdminProfileController::class, 'payment'])->name('profile#payment');
+    });
+
+    //order
+    Route::group(['prefix' => 'order'], function () {
+       Route::get('/orderList/{state?}',[OrderController::class,'orderList'])->name('admin#orderList');
+       Route::get('/details/{orderCode}',[OrderController::class,'orderdetails'])->name('admin#orderdetails');
+       Route::get('/reject/{orderCode}',[OrderController::class,'orderReject'])->name('admin#orderReject');
+       Route::get('/accept',[OrderController::class,'orderAccept'])->name('admin#orderAccept');
+
+    });
+
+    //sale information
+    Route::group(['prefix' => 'sale'], function () {
+       Route::get('/information',[SaleInformationController::class,'saleInformation'])->name('admin#saleInformation');
     });
 
     });

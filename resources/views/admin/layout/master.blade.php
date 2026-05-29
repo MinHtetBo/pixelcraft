@@ -10,7 +10,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>POS Admin Dashboard</title>
+    <title>PixelCraft Admin Dashboard</title>
 
     {{-- bootstrap link --}}
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
@@ -66,16 +66,16 @@
 
            @if (auth()->user()->role == 'superadmin')
                 <li class="nav-item">
-                <a class="nav-link" href="#"><i class="fa-solid fa-credit-card"></i></i><span>Payment Method </span></a>
+                <a class="nav-link" href="{{ route('profile#paymentPage') }}"><i class="fa-solid fa-credit-card"></i></i><span>Payment Method </span></a>
             </li>
            @endif
 
             <li class="nav-item">
-                <a class="nav-link" href="#"><i class="fa-solid fa-list"></i><span>Sale Information </span></a>
+                <a class="nav-link" href="{{ route('admin#saleInformation') }}"><i class="fa-solid fa-list"></i><span>Sale Information </span></a>
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href=""><i class="fa-solid fa-cart-shopping"></i><span>Order Board </span></a>
+                <a class="nav-link" href="{{ route('admin#orderList') }}"><i class="fa-solid fa-cart-shopping"></i><span>Order Board </span></a>
             </li>
 
             <li class="nav-item">

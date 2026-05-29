@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Order;
+use App\Models\Payment;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -170,4 +172,32 @@ class AdminProfileController extends Controller
             'address' => 'required|min:3|max:100'
         ]);
     }
+
+    // payment page
+    public function paymentPage(){
+        return view('admin.profile.payment');
+    }
+
+    // payment create
+    public function payment(Request $request){
+        $this->passwordValidationCheck($request);
+         Payment::create([
+                'account_name'=> $request->accName,
+                'account_number' => $request->accNumber,
+                'account_type' => $request->accType
+         ]);
+       return back()->with(['success'=>' payment create successfully']);
+    }
+
+    // payment validation
+     private function paymentValidationCheck($request)
+    {
+        $request->validate([
+            'account_name' => 'required',
+            'account_number' => 'required',
+            'account_type' => 'required'
+        ]);
+    }
+
+
 }
