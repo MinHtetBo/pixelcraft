@@ -5,7 +5,7 @@ use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 Route::group(['middleware'=>'userMiddleware', 'prefix'=>'user'],function(){
- Route::get('/home',[UserController::class, 'home'])->name('user#home');
+ Route::get('/home',[UserController::class, 'home'])->name('user.home');
  Route::get('/edit', [UserController::class, 'edit'])->name('user#edit');
  Route::post('/update/{id}', [UserController::class, 'update'])->name('user#update');
  Route::get('/change/password', [UserController::class, 'changePasswordPage'])->name('user#changePasswordPage');
