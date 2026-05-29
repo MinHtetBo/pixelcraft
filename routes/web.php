@@ -34,11 +34,6 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::get('/run-migration', function () {
-    \Illuminate\Support\Facades\Artisan::call('migrate:fresh --force');
-    return "Database migrated successfully!";
-});
-
 require __DIR__.'/auth.php';
 
 //social login
